@@ -24,13 +24,20 @@ public class BallController : MonoBehaviour
     {
       if(started==false)
         {
-            rb.velocity = new Vector3(0, 0, speed);
-            started = true;
+            if(Input.GetMouseButton(0))
+            {
+               
+                rb.velocity = new Vector3(0, 0, speed);
+                started = true;
+
+            }
+           
         }
         if(Physics.Raycast(transform.position, Vector3.down, 1f)==false)
         {
             rb.velocity = new Vector3(0, -25f, 0);
             gameover = true;
+            Camera.main.GetComponent<Camerafollow>().gameover = true;
         }
         Debug.DrawRay(transform.position, Vector3.down, Color.red);
         if(Input.GetMouseButton(0)&&gameover==false)
