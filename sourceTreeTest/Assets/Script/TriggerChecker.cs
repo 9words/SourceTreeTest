@@ -25,7 +25,8 @@ public class TriggerChecker : MonoBehaviour
     void Falldown()
     {
        GetComponentInParent<Rigidbody>().useGravity = true;
-       // Destroy(transform.gameObject);
+        GetComponentInParent<Rigidbody>().isKinematic = false;
+
         Destroy(transform.parent.gameObject, 2f);
     }
 }
