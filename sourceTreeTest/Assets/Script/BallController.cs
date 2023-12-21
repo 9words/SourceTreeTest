@@ -7,6 +7,7 @@ public class BallController : MonoBehaviour
     Rigidbody rb;
     public float speed;
     bool started;
+    bool gameover;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -17,7 +18,7 @@ public class BallController : MonoBehaviour
         started = false;
         
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -26,7 +27,13 @@ public class BallController : MonoBehaviour
             rb.velocity = new Vector3(0, 0, speed);
             started = true;
         }
-        if(Input.GetMouseButton(0))
+        if(Physics.Raycast(transform.position, Vector3.down, 1f)==false)
+        {
+            rb.velocity = new Vector3(0, -25f, 0);
+            gameover = true;
+        }
+        Debug.DrawRay(transform.position, Vector3.down, Color.red);
+        if(Input.GetMouseButton(0)&&gameover==false)
         {
            
             switchDirection();
