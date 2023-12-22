@@ -20,7 +20,11 @@ public class PlaneformSpawner : MonoBehaviour
         {
             Randominstan();
         }
-        InvokeRepeating("Randominstan",2f,0.2f);
+      
+    }
+   public  void StartPlanespawn()
+    {
+        InvokeRepeating("Randominstan", 0.1f, 0.2f);
     }
     void Randominstan()
     {
@@ -40,7 +44,7 @@ public class PlaneformSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameover)
+        if (GameManager.instance.gameover)
         {
             CancelInvoke("Randominstan");
         }
