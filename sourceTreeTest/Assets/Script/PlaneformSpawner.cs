@@ -6,6 +6,7 @@ public class PlaneformSpawner : MonoBehaviour
 {
     public GameObject planeform;
     public GameObject diamond;
+   
     Vector3 lastpos;
     float size;
    public bool gameover;

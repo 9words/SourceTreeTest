@@ -8,6 +8,7 @@ public class BallController : MonoBehaviour
     public float speed;
     bool started;
     bool gameover;
+    public GameObject particle;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -39,7 +40,7 @@ public class BallController : MonoBehaviour
             gameover = true;
             Camera.main.GetComponent<Camerafollow>().gameover = true;
         }
-        Debug.DrawRay(transform.position, Vector3.down, Color.red);
+       // Debug.DrawRay(transform.position, Vector3.down, Color.red);
         if(Input.GetMouseButton(0)&&gameover==false)
         {
            
@@ -59,13 +60,22 @@ public class BallController : MonoBehaviour
             
             rb.velocity = new Vector3(0, 0, speed);
         }
-       
+      
     }
     private void OnTriggerEnter(Collider col)
     {
         if(col.gameObject.tag=="diamond")
         {
+
+          
+            GameObject p=Instantiate(particle, col.gameObject.transform.position, Quaternion.identity);
+     
             Destroy(col.gameObject);
+            Destroy(p, 1f);
+
+
+
+
         }
     }
 }
